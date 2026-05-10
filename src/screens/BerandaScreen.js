@@ -197,17 +197,11 @@ export default function BerandaScreen({ navigation }) {
         <View style={styles.categoryRow}>
           <View style={[styles.catCard, { borderLeftColor: '#EF4444' }]}>
             <Text style={styles.catLabel}>🔴 Penting</Text>
-            <Text style={styles.catDetail}>
-              Selesai: <Text style={{ color: '#22C55E' }}>{stats?.penting_done ?? 0}</Text>
-              {' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.penting_not_done ?? 0}</Text>
-            </Text>
+            <Text style={styles.catDetail}>Selesai: <Text style={{ color: '#22C55E' }}>{stats?.penting_done ?? 0}</Text>{' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.penting_not_done ?? 0}</Text></Text>
           </View>
           <View style={[styles.catCard, { borderLeftColor: '#22C55E' }]}>
             <Text style={styles.catLabel}>🟢 Biasa</Text>
-            <Text style={styles.catDetail}>
-              Selesai: <Text style={{ color: '#22C55E' }}>{stats?.biasa_done ?? 0}</Text>
-              {' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.biasa_not_done ?? 0}</Text>
-            </Text>
+            <Text style={styles.catDetail}>Selesai: <Text style={{ color: '#22C55E' }}>{stats?.biasa_done ?? 0}</Text>{' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.biasa_not_done ?? 0}</Text></Text>
           </View>
         </View>
 

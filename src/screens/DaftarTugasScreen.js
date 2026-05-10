@@ -23,6 +23,7 @@ const formatDate = (dateStr) => {
 };
 
 function TaskItem({ item, onToggle }) {
+  console.log('TaskItem rendering:', { id: item.id, title: item.title, category: item.category });
   const isPenting = item.category === 'penting';
   const arrowColor = isPenting ? '#EF4444' : '#22C55E';
 
@@ -37,9 +38,9 @@ function TaskItem({ item, onToggle }) {
 
       {/* Checkbox */}
       <View style={[styles.checkbox, item.is_done && styles.checkboxDone]}>
-        {item.is_done && (
+        {item.is_done ? (
           <MaterialCommunityIcons name="check" size={14} color="#fff" />
-        )}
+        ) : null}
       </View>
 
       {/* Content */}
@@ -50,11 +51,11 @@ function TaskItem({ item, onToggle }) {
               {isPenting ? 'Penting' : 'Biasa'}
             </Text>
           </View>
-          {item.is_done && (
+          {item.is_done ? (
             <View style={styles.doneBadge}>
               <Text style={styles.doneText}>✓ Selesai</Text>
             </View>
-          )}
+          ) : null}
         </View>
 
         <Text
@@ -71,13 +72,17 @@ function TaskItem({ item, onToggle }) {
         ) : null}
 
         <View style={styles.dateRow}>
-          <MaterialCommunityIcons name="calendar-clock" size={12} color="#64748B" />
+          <View style={{ justifyContent: 'center' }}>
+            <MaterialCommunityIcons name="calendar-clock" size={12} color="#64748B" />
+          </View>
           <Text style={styles.dateText}>Jatuh tempo: {formatDate(item.due_date)}</Text>
         </View>
       </View>
 
       {/* Arrow icon */}
-      <MaterialCommunityIcons name="chevron-right" size={24} color={arrowColor} />
+      <View style={{ justifyContent: 'center', paddingRight: 4 }}>
+        <MaterialCommunityIcons name="chevron-right" size={24} color={arrowColor} />
+      </View>
     </TouchableOpacity>
   );
 }
@@ -142,7 +147,9 @@ export default function DaftarTugasScreen({ navigation }) {
           <Text style={styles.backText}>Kembali</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Daftar Tugas</Text>
-        <Text style={styles.countBadge}>{filtered.length}</Text>
+        <View style={styles.countBadge}>
+          <Text style={styles.countBadgeText}>{filtered.length}</Text>
+        </View>
       </View>
 
       {/* Filter chips */}
@@ -162,7 +169,9 @@ export default function DaftarTugasScreen({ navigation }) {
 
       {filtered.length === 0 ? (
         <View style={styles.empty}>
-          <MaterialCommunityIcons name="inbox-outline" size={60} color="#334155" />
+          <View>
+            <MaterialCommunityIcons name="inbox-outline" size={60} color="#334155" />
+          </View>
           <Text style={styles.emptyTitle}>Belum ada tugas</Text>
           <Text style={styles.emptySubtitle}>Tambahkan tugas dari halaman Beranda</Text>
         </View>
@@ -213,9 +222,6 @@ const styles = StyleSheet.create({
   },
   countBadge: {
     backgroundColor: '#6366F1',
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '700',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: 10,
@@ -223,6 +229,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 16,
     top: 60,
+  },
+  countBadgeText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '700',
   },
   filterRow: {
     flexDirection: 'row',
