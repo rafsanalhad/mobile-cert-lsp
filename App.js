@@ -30,16 +30,16 @@ export default function App() {
 
   if (!dbReady) {
     return (
-      <View style={{ flex: 1, backgroundColor: '#0F172A', justifyContent: 'center', alignItems: 'center', gap: 16 }}>
-        <StatusBar style="light" />
+      <View style={{ flex: 1, backgroundColor: '#F8FAFC', justifyContent: 'center', alignItems: 'center', gap: 16 }}>
+        <StatusBar style="dark" />
         {dbError ? (
-          <Text style={{ color: '#EF4444', textAlign: 'center', paddingHorizontal: 32 }}>
+          <Text style={{ color: '#DC2626', textAlign: 'center', paddingHorizontal: 32 }}>
             Error: {dbError}
           </Text>
         ) : (
           <>
-            <ActivityIndicator size="large" color="#6366F1" />
-            <Text style={{ color: '#64748B', fontSize: 14 }}>Memuat database...</Text>
+            <ActivityIndicator size="large" color="#0F766E" />
+            <Text style={{ color: '#475569', fontSize: 14 }}>Memuat database...</Text>
           </>
         )}
       </View>
@@ -49,7 +49,7 @@ export default function App() {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{ headerShown: false, animation: 'slide_from_right' }}

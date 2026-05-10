@@ -48,7 +48,7 @@ export default function LoginScreen({ navigation }) {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <StatusBar barStyle="light-content" backgroundColor="#0F172A" />
+      <StatusBar barStyle="dark-content" backgroundColor="#F8FAFC" />
 
       {/* Background gradient circles */}
       <View style={styles.bgCircle1} />
@@ -58,7 +58,7 @@ export default function LoginScreen({ navigation }) {
         {/* Logo */}
         <View style={styles.logoContainer}>
           <View style={styles.logoCircle}>
-            <MaterialCommunityIcons name="calendar-check" size={52} color="#6366F1" />
+            <MaterialCommunityIcons name="calendar-check" size={52} color="#0F766E" />
           </View>
           <Text style={styles.appName}>Agenda Nusantara</Text>
           <Text style={styles.appSubtitle}>Kelola tugas-tugas Anda dengan mudah</Text>
@@ -71,11 +71,11 @@ export default function LoginScreen({ navigation }) {
 
           {/* Username */}
           <View style={styles.inputWrapper}>
-            <MaterialCommunityIcons name="account-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
+            <MaterialCommunityIcons name="account-outline" size={20} color="#64748B" style={styles.inputIcon} />
             <TextInput
               style={styles.input}
               placeholder="Username"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               value={username}
               onChangeText={setUsername}
               autoCapitalize="none"
@@ -85,11 +85,11 @@ export default function LoginScreen({ navigation }) {
 
           {/* Password */}
           <View style={styles.inputWrapper}>
-            <MaterialCommunityIcons name="lock-outline" size={20} color="#94A3B8" style={styles.inputIcon} />
+            <MaterialCommunityIcons name="lock-outline" size={20} color="#64748B" style={styles.inputIcon} />
             <TextInput
               style={[styles.input, { flex: 1 }]}
               placeholder="Password"
-              placeholderTextColor="#475569"
+              placeholderTextColor="#94A3B8"
               value={password}
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
@@ -99,7 +99,7 @@ export default function LoginScreen({ navigation }) {
               <MaterialCommunityIcons
                 name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                 size={20}
-                color="#94A3B8"
+                color="#64748B"
               />
             </TouchableOpacity>
           </View>
@@ -136,27 +136,27 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: '#F8FAFC',
   },
   bgCircle1: {
     position: 'absolute',
     width: 300,
     height: 300,
     borderRadius: 150,
-    backgroundColor: '#312e81',
+    backgroundColor: '#D1FAE5',
     top: -80,
     right: -80,
-    opacity: 0.5,
+    opacity: 0.7,
   },
   bgCircle2: {
     position: 'absolute',
     width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: '#1e1b4b',
+    backgroundColor: '#DBEAFE',
     bottom: 100,
     left: -60,
-    opacity: 0.6,
+    opacity: 0.8,
   },
   content: {
     flex: 1,
@@ -171,22 +171,22 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
     borderWidth: 2,
-    borderColor: '#6366F1',
-    shadowColor: '#6366F1',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
+    borderColor: '#D1D5DB',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
     shadowRadius: 16,
     elevation: 8,
   },
   appName: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: '#0F172A',
     letterSpacing: 0.5,
   },
   appSubtitle: {
@@ -195,21 +195,21 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   card: {
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 24,
     padding: 24,
     borderWidth: 1,
-    borderColor: '#334155',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.4,
+    borderColor: '#E5E7EB',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.08,
     shadowRadius: 20,
-    elevation: 10,
+    elevation: 4,
   },
   welcomeText: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#F1F5F9',
+    color: '#0F172A',
     marginBottom: 4,
   },
   loginSubText: {
@@ -220,10 +220,10 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0F172A',
+    backgroundColor: '#F8FAFC',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: '#E2E8F0',
     paddingHorizontal: 14,
     marginBottom: 14,
     height: 52,
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: '#F1F5F9',
+    color: '#0F172A',
     fontSize: 15,
   },
   eyeIcon: {
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   hint: {
     textAlign: 'center',
-    color: '#475569',
+    color: '#64748B',
     fontSize: 11,
     marginTop: 14,
   },
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   footerText: {
-    color: '#334155',
+    color: '#94A3B8',
     fontSize: 12,
   },
 });

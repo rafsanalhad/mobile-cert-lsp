@@ -123,21 +123,21 @@ function DatePickerModal({ visible, onClose, onSelect, currentDate }) {
 const dpStyles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    backgroundColor: 'rgba(15, 23, 42, 0.25)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
   modal: {
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 20,
     width: '100%',
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: '#E5E7EB',
   },
   title: {
-    color: '#F1F5F9',
+    color: '#0F172A',
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
@@ -152,7 +152,7 @@ const dpStyles = StyleSheet.create({
     flex: 1,
   },
   colLabel: {
-    color: '#94A3B8',
+    color: '#64748B',
     fontSize: 11,
     textAlign: 'center',
     marginBottom: 6,
@@ -160,7 +160,7 @@ const dpStyles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: '#F8FAFC',
     borderRadius: 10,
   },
   item: {
@@ -173,7 +173,7 @@ const dpStyles = StyleSheet.create({
     marginHorizontal: 4,
   },
   itemText: {
-    color: '#94A3B8',
+    color: '#475569',
     fontSize: 13,
   },
   selectedText: {
@@ -187,13 +187,13 @@ const dpStyles = StyleSheet.create({
   },
   cancelBtn: {
     flex: 1,
-    backgroundColor: '#334155',
+    backgroundColor: '#E2E8F0',
     borderRadius: 12,
     paddingVertical: 13,
     alignItems: 'center',
   },
   cancelText: {
-    color: '#94A3B8',
+    color: '#334155',
     fontWeight: '600',
   },
   confirmBtn: {
@@ -350,7 +350,7 @@ export default function TambahTugasScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: '#F8FAFC',
   },
   header: {
     flexDirection: 'row',
@@ -359,8 +359,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 56,
     paddingBottom: 16,
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.05,
+    shadowRadius: 12,
+    elevation: 2,
   },
   backBtn: {
     flexDirection: 'row',
@@ -369,6 +375,7 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 16,
     fontWeight: '600',
+    color: '#0F172A',
   },
   badge: {
     flexDirection: 'row',
@@ -389,7 +396,7 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 22,
     fontWeight: '800',
-    color: '#F1F5F9',
+    color: '#0F172A',
     marginBottom: 4,
     marginTop: 8,
   },
@@ -399,7 +406,7 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   label: {
-    color: '#94A3B8',
+    color: '#475569',
     fontSize: 13,
     fontWeight: '600',
     marginBottom: 8,
@@ -408,10 +415,10 @@ const styles = StyleSheet.create({
   dateButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 14,
     paddingVertical: 14,
     marginBottom: 20,
@@ -419,17 +426,17 @@ const styles = StyleSheet.create({
   },
   dateText: {
     flex: 1,
-    color: '#F1F5F9',
+    color: '#0F172A',
     fontSize: 15,
   },
   input: {
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 14,
     paddingVertical: 14,
-    color: '#F1F5F9',
+    color: '#0F172A',
     fontSize: 15,
     marginBottom: 20,
   },
@@ -445,7 +452,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     gap: 8,
     marginTop: 8,
-    shadowColor: '#000',
+    shadowColor: '#0F172A',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,

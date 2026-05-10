@@ -15,13 +15,23 @@ import { useAuth } from '../utils/AuthContext';
 
 const { width } = Dimensions.get('window');
 
+const formatToday = () => {
+  const today = new Date();
+  return new Intl.DateTimeFormat('id-ID', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(today);
+};
+
 const MENU_ITEMS = [
   {
     id: 'tambah-penting',
     label: 'Tambah Tugas\nPenting',
     icon: 'alert-circle',
-    color: '#EF4444',
-    bgColor: '#450A0A',
+    color: '#DC2626',
+    bgColor: '#FEF2F2',
     screen: 'TambahTugas',
     params: { category: 'penting' },
   },
@@ -29,8 +39,8 @@ const MENU_ITEMS = [
     id: 'tambah-biasa',
     label: 'Tambah Tugas\nBiasa',
     icon: 'plus-circle',
-    color: '#22C55E',
-    bgColor: '#052E16',
+    color: '#16A34A',
+    bgColor: '#F0FDF4',
     screen: 'TambahTugas',
     params: { category: 'biasa' },
   },
@@ -38,8 +48,8 @@ const MENU_ITEMS = [
     id: 'daftar-tugas',
     label: 'Daftar\nTugas',
     icon: 'format-list-checks',
-    color: '#3B82F6',
-    bgColor: '#172554',
+    color: '#2563EB',
+    bgColor: '#EFF6FF',
     screen: 'DaftarTugas',
     params: {},
   },
@@ -47,8 +57,8 @@ const MENU_ITEMS = [
     id: 'pengaturan',
     label: 'Pengaturan',
     icon: 'cog',
-    color: '#F59E0B',
-    bgColor: '#451A03',
+    color: '#D97706',
+    bgColor: '#FFFBEB',
     screen: 'Pengaturan',
     params: {},
   },
@@ -59,7 +69,7 @@ function MiniBarChart({ data }) {
   if (!data || data.length === 0) {
     return (
       <View style={chartStyles.empty}>
-        <MaterialCommunityIcons name="chart-bar" size={32} color="#334155" />
+        <MaterialCommunityIcons name="chart-bar" size={32} color="#94A3B8" />
         <Text style={chartStyles.emptyText}>Belum ada data</Text>
       </View>
     );
@@ -112,7 +122,7 @@ const chartStyles = StyleSheet.create({
   bar: {
     width: 20,
     borderRadius: 4,
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0F766E',
   },
   countLabel: {
     color: '#94A3B8',
@@ -131,7 +141,7 @@ const chartStyles = StyleSheet.create({
     gap: 6,
   },
   emptyText: {
-    color: '#475569',
+    color: '#64748B',
     fontSize: 12,
   },
 });
@@ -165,74 +175,54 @@ export default function BerandaScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#0F172A" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-      {/* Header */}
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.greeting}>Halo, {currentUser?.username} 👋</Text>
-          <Text style={styles.headerTitle}>Agenda Nusantara</Text>
-        </View>
-        <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn}>
-          <MaterialCommunityIcons name="logout" size={22} color="#EF4444" />
+      <View style={styles.topBar}>
+        <Text style={styles.topBarTitle}>Beranda</Text>
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn} activeOpacity={0.85}>
+          <MaterialCommunityIcons name="logout" size={18} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-        {/* Stats Cards */}
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll} contentContainerStyle={styles.scrollContent}>
+        <View style={styles.greetingBlock}>
+          <Text style={styles.greeting}>Halo, {currentUser?.username}! 👋</Text>
+          <Text style={styles.todayText}>{formatToday()}</Text>
+        </View>
+
         <View style={styles.statsRow}>
-          <View style={[styles.statCard, { borderColor: '#22C55E' }]}>
-            <MaterialCommunityIcons name="check-circle" size={28} color="#22C55E" />
-            <Text style={styles.statNumber}>{stats?.done ?? 0}</Text>
-            <Text style={styles.statLabel}>Tugas Selesai</Text>
+          <View style={styles.statCard}>
+            <Text style={styles.statLabelSmall}>TUGAS SELESAI</Text>
+            <Text style={[styles.statNumber, { color: '#16A34A' }]}>{stats?.done ?? 0}</Text>
           </View>
-          <View style={[styles.statCard, { borderColor: '#F59E0B' }]}>
-            <MaterialCommunityIcons name="clock-outline" size={28} color="#F59E0B" />
-            <Text style={styles.statNumber}>{stats?.not_done ?? 0}</Text>
-            <Text style={styles.statLabel}>Belum Selesai</Text>
+          <View style={styles.statCard}>
+            <Text style={styles.statLabelSmall}>BELUM SELESAI</Text>
+            <Text style={[styles.statNumber, { color: '#DC2626' }]}>{stats?.not_done ?? 0}</Text>
           </View>
         </View>
 
-        {/* Category stats */}
-        <View style={styles.categoryRow}>
-          <View style={[styles.catCard, { borderLeftColor: '#EF4444' }]}>
-            <Text style={styles.catLabel}>🔴 Penting</Text>
-            <Text style={styles.catDetail}>Selesai: <Text style={{ color: '#22C55E' }}>{stats?.penting_done ?? 0}</Text>{' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.penting_not_done ?? 0}</Text></Text>
-          </View>
-          <View style={[styles.catCard, { borderLeftColor: '#22C55E' }]}>
-            <Text style={styles.catLabel}>🟢 Biasa</Text>
-            <Text style={styles.catDetail}>Selesai: <Text style={{ color: '#22C55E' }}>{stats?.biasa_done ?? 0}</Text>{' · '}Belum: <Text style={{ color: '#F59E0B' }}>{stats?.biasa_not_done ?? 0}</Text></Text>
-          </View>
-        </View>
-
-        {/* Chart */}
         <View style={styles.chartCard}>
-          <View style={styles.chartHeader}>
-            <MaterialCommunityIcons name="chart-bar" size={18} color="#6366F1" />
-            <Text style={styles.chartTitle}>Tugas Selesai per Hari (7 hari terakhir)</Text>
-          </View>
+          <Text style={styles.cardTitle}>TUGAS SELESAI / HARI [BONUS]</Text>
           <MiniBarChart data={chartData} />
         </View>
 
-        {/* Menu Grid */}
-        <Text style={styles.sectionTitle}>Menu Utama</Text>
         <View style={styles.menuGrid}>
           {MENU_ITEMS.map((item) => (
             <TouchableOpacity
               key={item.id}
-              style={[styles.menuCard, { borderColor: item.color + '40' }]}
+              style={styles.menuCard}
               onPress={() => navigation.navigate(item.screen, item.params)}
-              activeOpacity={0.8}
+              activeOpacity={0.85}
             >
               <View style={[styles.menuIconBg, { backgroundColor: item.bgColor }]}>
-                <MaterialCommunityIcons name={item.icon} size={32} color={item.color} />
+                <MaterialCommunityIcons name={item.icon} size={28} color={item.color} />
               </View>
               <Text style={styles.menuLabel}>{item.label}</Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <View style={{ height: 32 }} />
+        <View style={{ height: 18 }} />
       </ScrollView>
     </View>
   );
@@ -241,97 +231,128 @@ export default function BerandaScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A',
+    backgroundColor: '#F8FAFC',
   },
-  header: {
+  topBar: {
+    backgroundColor: '#4BA39A',
+    paddingTop: 48,
+    paddingBottom: 14,
+    paddingHorizontal: 16,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 56,
-    paddingBottom: 20,
-    backgroundColor: '#1E293B',
-    borderBottomWidth: 1,
-    borderBottomColor: '#334155',
+    justifyContent: 'space-between',
   },
-  greeting: {
-    fontSize: 13,
-    color: '#94A3B8',
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: '800',
-    color: '#F1F5F9',
-    letterSpacing: 0.3,
+  topBarTitle: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '700',
   },
   logoutBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#450A0A',
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: '#FFFFFF22',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#991B1B',
+    borderColor: '#FFFFFF44',
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 16,
+  },
+  greetingBlock: {
+    marginBottom: 16,
+  },
+  greeting: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#0F172A',
+  },
+  todayText: {
+    marginTop: 2,
+    color: '#64748B',
+    fontSize: 13,
   },
   statsRow: {
     flexDirection: 'row',
     gap: 14,
-    paddingHorizontal: 20,
-    marginTop: 20,
+    marginBottom: 14,
   },
   statCard: {
     flex: 1,
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 18,
-    alignItems: 'center',
-    gap: 6,
+    padding: 16,
+    alignItems: 'flex-start',
     borderWidth: 1,
+    borderColor: '#E5E7EB',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.04,
+    shadowRadius: 10,
+    elevation: 1,
+  },
+  statLabelSmall: {
+    color: '#64748B',
+    fontSize: 12,
+    fontWeight: '700',
   },
   statNumber: {
-    fontSize: 32,
+    marginTop: 4,
+    fontSize: 34,
     fontWeight: '900',
-    color: '#F1F5F9',
   },
   statLabel: {
     fontSize: 12,
     color: '#94A3B8',
     textAlign: 'center',
+    fontWeight: '600',
   },
   categoryRow: {
     flexDirection: 'row',
     gap: 12,
-    paddingHorizontal: 20,
     marginTop: 14,
   },
   catCard: {
     flex: 1,
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 14,
     borderLeftWidth: 3,
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 0,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.05,
+    shadowRadius: 12,
+    elevation: 2,
   },
   catLabel: {
-    color: '#E2E8F0',
+    color: '#0F172A',
     fontWeight: '700',
     fontSize: 13,
     marginBottom: 4,
   },
   catDetail: {
-    color: '#94A3B8',
+    color: '#64748B',
     fontSize: 12,
   },
   chartCard: {
-    backgroundColor: '#1E293B',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    margin: 20,
+    marginBottom: 14,
     padding: 16,
     borderWidth: 1,
-    borderColor: '#334155',
+    borderColor: '#E5E7EB',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.05,
+    shadowRadius: 12,
+    elevation: 2,
   },
   chartHeader: {
     flexDirection: 'row',
@@ -340,44 +361,58 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   chartTitle: {
-    color: '#94A3B8',
+    color: '#475569',
     fontSize: 12,
+    fontWeight: '700',
+  },
+  cardTitle: {
+    color: '#64748B',
+    fontSize: 12,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+    marginBottom: 10,
   },
   sectionTitle: {
-    color: '#94A3B8',
-    fontSize: 13,
-    fontWeight: '600',
+    color: '#64748B',
+    fontSize: 12,
+    fontWeight: '800',
     letterSpacing: 1,
     textTransform: 'uppercase',
     paddingHorizontal: 20,
-    marginBottom: 14,
+    marginBottom: 12,
   },
   menuGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 14,
     gap: 12,
   },
   menuCard: {
     width: (width - 28 - 12 * 3) / 2,
-    backgroundColor: '#1E293B',
-    borderRadius: 20,
-    padding: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    paddingVertical: 22,
+    paddingHorizontal: 14,
     alignItems: 'center',
     borderWidth: 1,
-    gap: 12,
+    borderColor: '#E5E7EB',
+    gap: 10,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.04,
+    shadowRadius: 10,
+    elevation: 1,
   },
   menuIconBg: {
-    width: 64,
-    height: 64,
-    borderRadius: 18,
+    width: 56,
+    height: 56,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
   menuLabel: {
-    color: '#E2E8F0',
+    color: '#0F172A',
     fontSize: 13,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
   },
 });
