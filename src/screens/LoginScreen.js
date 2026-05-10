@@ -126,7 +126,7 @@ export default function LoginScreen({ navigation }) {
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>PT. Sumber Daya Makmur © 2026</Text>
+          <Text style={styles.footerText}>Harafsan Alhad © 2026</Text>
         </View>
       </View>
     </KeyboardAvoidingView>

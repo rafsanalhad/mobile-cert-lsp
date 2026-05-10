@@ -169,10 +169,10 @@ export default function PengaturanScreen({ navigation }) {
             </View>
 
             <View style={styles.devInfo}>
-              <Text style={styles.devName}>Muhammad Rafsan Al Farisi</Text>
+              <Text style={styles.devName}>Muhammad Harafsan Alhad</Text>
               <View style={styles.devRow}>
                 <MaterialCommunityIcons name="card-account-details-outline" size={14} color="#64748B" />
-                <Text style={styles.devDetail}>NIM: 2341760039</Text>
+                <Text style={styles.devDetail}>NIM: 2241720059</Text>
               </View>
               <View style={styles.devRow}>
                 <MaterialCommunityIcons name="school-outline" size={14} color="#64748B" />
@@ -180,7 +180,7 @@ export default function PengaturanScreen({ navigation }) {
               </View>
               <View style={styles.devRow}>
                 <MaterialCommunityIcons name="domain" size={14} color="#64748B" />
-                <Text style={styles.devDetail}>PT. Sumber Daya Makmur</Text>
+                <Text style={styles.devDetail}>Harafsan Alhad - Fullstack Dev</Text>
               </View>
             </View>
           </View>
@@ -191,7 +191,7 @@ export default function PengaturanScreen({ navigation }) {
           <MaterialCommunityIcons name="calendar-check" size={24} color="#0F766E" />
           <Text style={styles.appInfoTitle}>Agenda Nusantara</Text>
           <Text style={styles.appInfoVersion}>Versi 1.0.0 • 2026</Text>
-          <Text style={styles.appInfoCopy}>© PT. Sumber Daya Makmur</Text>
+          <Text style={styles.appInfoCopy}>© Harafsan Alhad 2026</Text>
         </View>
 
         <View style={{ height: 40 }} />
