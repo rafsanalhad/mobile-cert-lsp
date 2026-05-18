@@ -146,7 +146,7 @@ export default function DaftarTugasScreen({ navigation }) {
           <MaterialCommunityIcons name="chevron-left" size={28} color="#0F766E" />
           <Text style={styles.backText}>Kembali</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Daftar Tugas</Text>
+        <Text style={styles.headerTitle}>Daftar Tugas</Text>+
         <View style={styles.countBadge}>
           <Text style={styles.countBadgeText}>{filtered.length}</Text>
         </View>

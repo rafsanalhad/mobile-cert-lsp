@@ -28,6 +28,12 @@
       [
         "expo-sqlite"
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f82d344a-ddc2-4bf5-9cec-67340686e1ab"
+      }
+    },
+    "owner": "rafsanalhad"
   }
 }
